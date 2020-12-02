@@ -7,12 +7,10 @@ import { useHistory } from "react-router-dom";
 
 function Header() {
   const Auth = useContext(AuthContext);
-  const history = useHistory();
 
-  function logOut(auth, history) {
+  function logOut(auth) {
     auth.setToken("");
     localStorage.removeItem("token");
-    history.push("/");
   }
   return (
     <S.Container>
@@ -34,9 +32,9 @@ function Header() {
                 <S.StyledLink to="/addWineType">Add Type</S.StyledLink>
                 {/* <S.StyledLink to="/">Wine List</S.StyledLink>
               <S.StyledLink to="/">Add Wine</S.StyledLink> */}
-                <Button handleClick={() => logOut(Auth, history)}>
+                <S.StyledLink to="/" onClick={() => logOut(Auth)}>
                   Logout
-                </Button>
+                </S.StyledLink>
               </>
             )}
           </S.Actions>
