@@ -1,19 +1,48 @@
 import React from "react";
 import * as S from "./Header.style";
-import { Link } from "react-router-dom";
-import logoImg from "../../assets/logo.png";
+import { Section, Button } from "../../components";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 function Header() {
+  const Auth = useContext(AuthContext);
+  const history = useHistory();
+
+  function logOut(auth, history) {
+    auth.setToken("");
+    localStorage.removeItem("token");
+    history.push("/");
+  }
   return (
-    <S.Header>
-      <Link to="/">
-        <S.Logo src={logoImg} alt="Logo" />
-      </Link>
-      <S.Actions>
-        <S.StyledLink to="/">Home</S.StyledLink>
-        <S.StyledLink to="/about">About</S.StyledLink>
-      </S.Actions>
-    </S.Header>
+    <S.Container>
+      <Section>
+        <S.Header>
+          <S.StyledLink to="/">
+            <S.Logo>WineSite</S.Logo>
+          </S.StyledLink>
+          <S.Actions>
+            {!Auth.token && (
+              <>
+                <S.StyledLink to="/register">Register</S.StyledLink>
+                <S.StyledLink to="/login">Login In</S.StyledLink>
+              </>
+            )}
+            {Auth.token && (
+              <>
+                <S.StyledLink to="/allWine">Wine Types</S.StyledLink>
+                <S.StyledLink to="/addWineType">Add Type</S.StyledLink>
+                {/* <S.StyledLink to="/">Wine List</S.StyledLink>
+              <S.StyledLink to="/">Add Wine</S.StyledLink> */}
+                <Button handleClick={() => logOut(Auth, history)}>
+                  Logout
+                </Button>
+              </>
+            )}
+          </S.Actions>
+        </S.Header>
+      </Section>
+    </S.Container>
   );
 }
 
