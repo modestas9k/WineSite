@@ -1,9 +1,8 @@
 import React from "react";
 import * as S from "./Header.style";
-import { Section, Button } from "../../components";
+import { Section } from "../../components";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-import { useHistory } from "react-router-dom";
 
 function Header() {
   const Auth = useContext(AuthContext);
