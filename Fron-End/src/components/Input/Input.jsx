@@ -1,7 +1,14 @@
 import React from "react";
 import * as S from "./Input.style";
 
-function Input({ label, name, handleChange, type }) {
+function Input({
+  label,
+  name,
+  handleChange,
+  type,
+  placeholder,
+  SelectOptions,
+}) {
   switch (type) {
     case "password":
       return (
@@ -13,7 +20,7 @@ function Input({ label, name, handleChange, type }) {
             key={name}
             name={name}
             type="password"
-            placeholder="*******"
+            placeholder={placeholder}
             required
           />
         </S.InputBox>
@@ -28,9 +35,33 @@ function Input({ label, name, handleChange, type }) {
             key={name}
             name={name}
             type="email"
-            placeholder="petras@petras.lt"
+            placeholder={placeholder}
             required
           />
+        </S.InputBox>
+      );
+    case "select":
+      return (
+        <S.InputBox>
+          <S.Label htmlFor={name}>{label}</S.Label>
+          <S.SelectField
+            onChange={handleChange}
+            id={name}
+            key={name}
+            name={name}
+            type="select"
+            placeholder={placeholder}
+            required
+          >
+            {SelectOptions &&
+              SelectOptions.map((item) => {
+                return (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                );
+              })}
+          </S.SelectField>
         </S.InputBox>
       );
     default:
@@ -41,8 +72,9 @@ function Input({ label, name, handleChange, type }) {
             onChange={handleChange}
             id={name}
             name={name}
-            type="text"
+            type={type}
             key={name}
+            placeholder={placeholder}
             required
           />
         </S.InputBox>
