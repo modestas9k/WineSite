@@ -147,4 +147,45 @@ router.get("/allWineTypes", middleware.isLoggedIn, (req, res) => {
   });
 });
 
+router.post("/addMyWine", middleware.isLoggedIn, (req, res) => {
+  if (req.body.wine_id && req.body.quantity) {
+    con.query(
+      `INSERT INTO wine_quantity (user_id, wine_id, change_qty) VALUES (${
+        req.userData.userId
+      }, ${mysql.escape(req.body.wine_id)}, ${mysql.escape(
+        req.body.quantity
+      )})`,
+      (err) => {
+        if (err) {
+          console.log(err);
+          return res
+            .status(400)
+            .json({ msg: "Server error adding wine quantity" });
+        } else {
+          return res.status(201).json({ msg: "Wine Quantity change added!" });
+        }
+      }
+    );
+  } else {
+    return res.status(400).json({ msg: "Passed values are incorrect" });
+  }
+});
+
+router.get("/myWineList", middleware.isLoggedIn, (req, res) => {
+  con.query(
+    `SELECT wine_types.id, wine_types.name, wine_types.region, wine_types.type, wine_types.year, SUM(wine_quantity.change_qty) as Total FROM wine_quantity
+     INNER JOIN wine_types ON wine_quantity.wine_id = wine_types.id
+     WHERE user_id = '${req.userData.userId}'
+     GROUP BY wine_quantity.wine_id`,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(400).json({ msg: "Issue retrieving wine quantity" });
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
+
 module.exports = router;
