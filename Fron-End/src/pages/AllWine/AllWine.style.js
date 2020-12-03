@@ -27,7 +27,7 @@ export const Table = styled.table`
 export const Thead = styled.thead`
   font-weight: 600;
   border: 1px solid black;
-  background-color: whitesmoke;
+  background-color: #dae1e8;
 `;
 export const Th = styled.th`
   padding: 10px;

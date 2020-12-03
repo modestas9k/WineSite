@@ -72,7 +72,10 @@ function AddWineType() {
               placeholder="White"
               name="type"
               type="select"
-              SelectOptions={["Select wine type", "White", "Red"]}
+              SelectOptions={[
+                { type: "White", id: 1 },
+                { type: "Red", id: 2 },
+              ]}
               handleChange={(e) => {
                 setFieldValues({ ...fieldValues, type: e.target.value });
               }}

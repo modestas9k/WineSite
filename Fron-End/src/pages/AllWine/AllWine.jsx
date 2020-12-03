@@ -22,7 +22,7 @@ function AllWine() {
   return (
     <>
       <Section>
-        <S.H1>Whine Types</S.H1>
+        <S.H1>Wine Types</S.H1>
         <S.BoxWrapper>
           <S.H3>All Wine Types Below</S.H3>
           <S.P>A short explanation of this</S.P>
