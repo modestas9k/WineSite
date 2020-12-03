@@ -29,8 +29,8 @@ function Header() {
               <>
                 <S.StyledLink to="/allWine">Wine Types</S.StyledLink>
                 <S.StyledLink to="/addWineType">Add Type</S.StyledLink>
-                {/* <S.StyledLink to="/">Wine List</S.StyledLink>
-              <S.StyledLink to="/">Add Wine</S.StyledLink> */}
+                <S.StyledLink to="/myWine">Wine List</S.StyledLink>
+                <S.StyledLink to="/addMyWine">Add Wine</S.StyledLink>
                 <S.StyledLink to="/" onClick={() => logOut(Auth)}>
                   Logout
                 </S.StyledLink>

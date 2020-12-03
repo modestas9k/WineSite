@@ -5,6 +5,8 @@ import { Home, Login } from "./pages";
 const RegisterLazy = lazy(() => import(`./pages/Register/Register`));
 const AllWineLazy = lazy(() => import(`./pages/AllWine/AllWine`));
 const AddWineTypeLazy = lazy(() => import(`./pages/AddWineType/AddWineType`));
+const WineListLazy = lazy(() => import(`./pages/WineList/WineList`));
+const AddMyWineTypeLazy = lazy(() => import(`./pages/AddMyWine/AddMyWine`));
 
 function Routes() {
   return (
@@ -26,6 +28,18 @@ function Routes() {
             path="/addWineType"
             redirectPath="/"
             component={AddWineTypeLazy}
+          />
+          <PrivateRoute
+            exact
+            path="/myWine"
+            redirectPath="/"
+            component={WineListLazy}
+          />
+          <PrivateRoute
+            exact
+            path="/addMyWine"
+            redirectPath="/"
+            component={AddMyWineTypeLazy}
           />
         </Switch>
       </Suspense>
