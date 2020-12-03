@@ -53,13 +53,24 @@ function Input({
             placeholder={placeholder}
             required
           >
+            <option value="" defaultValue>
+              Select option
+            </option>
             {SelectOptions &&
               SelectOptions.map((item) => {
-                return (
-                  <option value={item} key={item}>
-                    {item}
-                  </option>
-                );
+                if (item.name && item.region && item.type && item.year) {
+                  return (
+                    <option value={item.id} key={item.id}>
+                      {item.name} {item.region} {item.year} {item.type}
+                    </option>
+                  );
+                } else {
+                  return (
+                    <option value={item.type} key={item.id}>
+                      {item.type}
+                    </option>
+                  );
+                }
               })}
           </S.SelectField>
         </S.InputBox>
