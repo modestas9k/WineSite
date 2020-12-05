@@ -29,4 +29,7 @@ export const StyledLink = styled(Link)`
   &:not(:last-child) {
     margin-right: 15px;
   }
+  &:focus {
+    text-decoration: underline;
+  }
 `;

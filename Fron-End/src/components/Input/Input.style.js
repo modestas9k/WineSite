@@ -7,10 +7,7 @@ export const InputBox = styled.div`
   width: 100%;
 `;
 
-export const InputField = styled.input.attrs({
-  type: "text",
-  placeholder: (props) => props.placeholder || "Please fill",
-})`
+export const InputField = styled.input`
   width: 100%;
   padding: 15px;
   margin-bottom: 35px;

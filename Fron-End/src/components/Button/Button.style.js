@@ -30,3 +30,5 @@ export const Button = styled.button`
         : props.theme.secondary.focus.background};
   }
 `;
+
+export const PrimaryLink = Button.withComponent("a");
